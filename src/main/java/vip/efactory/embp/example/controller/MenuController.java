@@ -5,13 +5,12 @@ import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import vip.efactory.common.base.utils.R;
+import vip.efactory.embp.base.controller.BaseController;
 import vip.efactory.embp.example.entity.SysMenu;
 import vip.efactory.embp.example.service.SysMenuService;
 import vip.efactory.embp.example.vo.MenuVO;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -19,24 +18,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RequestMapping("/menu")
 @Api(value = "menu", tags = "菜单管理模块")
-public class MenuController {
+public class MenuController extends BaseController<SysMenu, SysMenuService> {
 
     private final SysMenuService sysMenuService;
-
-    /**
-     * 返回当前用户的树形菜单集合
-     *
-     * @param parentId 父节点ID
-     * @return 当前用户的树形菜单
-     */
-    @GetMapping
-    public R getUserMenu(Integer parentId) {
-
-        // 获取符合条件的菜单
-        Set<MenuVO> all = new HashSet<>();
-        SecurityUtils.getRoles().forEach(roleId -> all.addAll(sysMenuService.findMenuByRoleId(roleId)));
-        return R.ok(sysMenuService.filterMenu(all, parentId));
-    }
 
     /**
      * 返回树形菜单集合

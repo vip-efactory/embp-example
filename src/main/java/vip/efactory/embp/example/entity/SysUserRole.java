@@ -1,29 +1,29 @@
 package vip.efactory.embp.example.entity;
 
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import vip.efactory.embp.base.entity.BaseEntity;
 
 /**
  * 用户角色表
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysUserRole extends Model<SysUserRole> {
+public class SysUserRole extends BaseEntity<SysUserRole> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 用户ID
-	 */
-	@ApiModelProperty(value = "用户id")
-	private Integer userId;
+    /**
+     * 用户ID
+     */
+    @ApiModelProperty(value = "用户id")
+    private Integer userId;
 
-	/**
-	 * 角色ID
-	 */
-	@ApiModelProperty(value = "角色id")
-	private Integer roleId;
+    /**
+     * 角色ID
+     */
+    @ApiModelProperty(value = "角色id")
+    private Integer roleId;
 
 }

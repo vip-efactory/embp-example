@@ -1,5 +1,11 @@
-# 数据源
+
 spring:
+  # redis 缓存
+  redis:
+    host: ${REDIS-HOST:localhost}
+    port: 6379
+    database: 2
+  # 数据源
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver

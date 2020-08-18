@@ -1,12 +1,13 @@
 package vip.efactory.embp.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import vip.efactory.embp.base.service.IBaseService;
 import vip.efactory.embp.example.entity.SysRoleMenu;
 
 /**
  * 角色菜单表 服务类
  */
-public interface SysRoleMenuService extends IService<SysRoleMenu> {
+public interface SysRoleMenuService extends IBaseService<SysRoleMenu> {
 
 	/**
 	 * 更新角色菜单

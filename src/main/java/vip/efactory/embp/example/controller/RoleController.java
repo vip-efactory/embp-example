@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import vip.efactory.common.base.utils.R;
+import vip.efactory.embp.base.controller.BaseController;
 import vip.efactory.embp.example.entity.SysRole;
 import vip.efactory.embp.example.service.SysRoleMenuService;
 import vip.efactory.embp.example.service.SysRoleService;
@@ -18,7 +19,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping("/role")
 @Api(value = "role", tags = "角色管理模块")
-public class RoleController {
+public class RoleController extends BaseController<SysRole,SysRoleService> {
 
 	private final SysRoleService sysRoleService;
 

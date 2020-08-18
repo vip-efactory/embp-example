@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import vip.efactory.embp.base.entity.BaseEntity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
  * 用户表
  */
 @Data
-public class SysUser implements Serializable {
+public class SysUser extends BaseEntity<SysUser> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,18 +44,6 @@ public class SysUser implements Serializable {
 	@JsonIgnore
 	@ApiModelProperty(value = "随机盐")
 	private String salt;
-
-	/**
-	 * 创建时间
-	 */
-	@ApiModelProperty(value = "创建时间")
-	private LocalDateTime createTime;
-
-	/**
-	 * 修改时间
-	 */
-	@ApiModelProperty(value = "修改时间")
-	private LocalDateTime updateTime;
 
 	/**
 	 * 锁定标记
