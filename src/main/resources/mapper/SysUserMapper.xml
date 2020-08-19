@@ -33,7 +33,9 @@
 		<result column="lock_flag" property="lockFlag"/>
 		<result column="udel_flag" property="delFlag"/>
 		<result column="deptId" property="deptId"/>
-		<result column="deptName" property="deptName"/>
+		<result column="remark" property="remark"/>
+		<result column="creator_num" property="creatorNum"/>
+		<result column="updater_num" property="updaterNum"/>
 		<collection property="roleList" ofType="vip.efactory.embp.example.entity.SysRole">
 			<id column="role_id" property="roleId"/>
 			<result column="role_name" property="roleName"/>
@@ -41,6 +43,9 @@
 			<result column="role_desc" property="roleDesc"/>
 			<result column="rcreate_time" property="createTime"/>
 			<result column="rupdate_time" property="updateTime"/>
+			<result column="rremark" property="remark"/>
+			<result column="rcreator_num" property="creatorNum"/>
+			<result column="rupdater_num" property="updaterNum"/>
 		</collection>
 	</resultMap>
 
@@ -74,16 +79,20 @@
 		`user`.avatar,
 		`user`.create_time AS ucreate_time,
 		`user`.update_time AS uupdate_time,
+		`user`.remark AS remark,
+		`user`.creator_num AS ucreator_num,
+		`user`.updater_num AS uupdater_num,
 		`user`.del_flag AS udel_flag,
 		`user`.lock_flag AS lock_flag,
 		r.role_id,
 		r.role_name,
 		r.role_code,
 		r.role_desc,
+		r.remark as rremark,
 		r.create_time AS rcreate_time,
 		r.update_time AS rupdate_time,
-		d.name AS deptName,
-		d.dept_id AS deptId
+		r.creator_num AS rcreator_num,
+		r.updater_num AS rupdater_num
     </sql>
 
 	<select id="getUserVoByUsername" resultMap="userVoResultMap">
@@ -103,7 +112,6 @@
 		sys_user AS `user`
 		LEFT JOIN sys_user_role AS ur ON ur.user_id = `user`.user_id
 		LEFT JOIN sys_role AS r ON r.role_id = ur.role_id
-		LEFT JOIN sys_dept AS d ON d.dept_id = `user`.dept_id
 		WHERE
 		`user`.user_id = #{id}
 	</select>
@@ -120,11 +128,9 @@
 		`user`.update_time AS uupdate_time,
 		`user`.del_flag AS udel_flag,
 		`user`.lock_flag AS lock_flag,
-		`user`.dept_id AS deptId,
-		d.name AS deptName
+		`user`.dept_id AS deptId
 		FROM
 		sys_user AS `user`
-		LEFT JOIN sys_dept AS d ON d.dept_id = `user`.dept_id
 		<where>
 			`user`.del_flag = '0'
 			<if test="query.username != null and query.username != ''">

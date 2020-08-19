@@ -1,7 +1,12 @@
 package vip.efactory.embp.example.vo;
 
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import vip.efactory.embp.base.entity.BaseEntity;
 import vip.efactory.embp.example.entity.SysRole;
 
 import java.io.Serializable;
@@ -32,16 +37,6 @@ public class UserVO implements Serializable {
 	 * 随机盐
 	 */
 	private String salt;
-
-	/**
-	 * 创建时间
-	 */
-	private LocalDateTime createTime;
-
-	/**
-	 * 修改时间
-	 */
-	private LocalDateTime updateTime;
 
 	/**
 	 * 0-正常，1-删除
@@ -77,5 +72,33 @@ public class UserVO implements Serializable {
 	 * 角色列表
 	 */
 	private List<SysRole> roleList;
+
+	/**
+	 * Description:备注
+	 */
+	private String remark;
+
+	/**
+	 * 创建时间
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	private LocalDateTime createTime;
+
+	/**
+	 * 更新时间
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	private LocalDateTime updateTime;
+
+	/**
+	 * Description:创建人编号
+	 */
+	private String creatorNum;
+
+	/**
+	 * Description:更新人编号或者姓名,//不使用id，如果人员被删除，看到一个数字是无意义的。
+	 * 修改人
+	 */
+	private String updaterNum;
 
 }
