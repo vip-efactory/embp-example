@@ -6,8 +6,12 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import vip.efactory.common.base.valid.Update;
 import vip.efactory.embp.base.entity.BaseEntity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -24,12 +28,15 @@ public class SysUser extends BaseEntity<SysUser> {
 	 */
 	@TableId(value = "user_id", type = IdType.AUTO)
 	@ApiModelProperty(value = "主键id")
+	@NotNull(message = "userId {property.not.allow.empty}", groups = Update.class)  // 意味着，updateById更新时id不允许为空
 	private Integer userId;
 
 	/**
 	 * 用户名
 	 */
 	@ApiModelProperty(value = "用户名")
+	@NotEmpty
+	@Length(max = 64,min = 2)
 	private String username;
 
 	/**
