@@ -25,3 +25,12 @@ mybatis-plus:
       logic-not-delete-value: 0
   configuration:
     map-underscore-to-camel-case: true
+
+# Logger Config
+logging:
+  level:
+    vip:
+      efactory:
+        embp:
+          example: debug
+
