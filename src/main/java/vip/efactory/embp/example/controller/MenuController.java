@@ -63,6 +63,7 @@ public class MenuController extends BaseController<SysMenu, SysMenuService> {
      * @param sysMenu 菜单信息
      * @return 含ID 菜单信息
      */
+    @Override
     @PostMapping
     public R save(@Valid @RequestBody SysMenu sysMenu) {
         sysMenuService.save(sysMenu);

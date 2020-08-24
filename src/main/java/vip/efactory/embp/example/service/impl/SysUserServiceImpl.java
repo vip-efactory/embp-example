@@ -10,9 +10,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vip.efactory.common.base.utils.R;
+import vip.efactory.embp.base.service.impl.BaseObservable;
 import vip.efactory.embp.base.service.impl.BaseServiceImpl;
 import vip.efactory.embp.example.dto.UserDTO;
 import vip.efactory.embp.example.dto.UserInfo;
@@ -104,6 +106,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserMapper> 
      * @return
      */
     @Override
+    @Cacheable(value = "USER_DETAILS")
     public IPage getUserWithRolePage(Page page, UserDTO userDTO) {
         return baseMapper.getUserVosPage(page, userDTO);
     }
@@ -169,4 +172,10 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserMapper> 
         return Boolean.TRUE;
     }
 
+    // 联动清除本地的缓存！
+    @Override
+    @CacheEvict(value = "USER_DETAILS",allEntries = true)
+    public void update(BaseObservable o, Object arg) {
+        log.info("联动清除user缓存信息.....");
+    }
 }
