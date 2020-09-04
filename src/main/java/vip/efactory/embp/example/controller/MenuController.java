@@ -110,8 +110,8 @@ public class MenuController extends BaseController<SysMenu, SysMenuService> {
      */
     @PostMapping(value = "/multi/query")
     @Override
-    public R queryMutiField(@RequestParam("q") String q, @RequestParam("fields") String fields) {
-        return super.queryMutiField(q, fields);
+    public R queryMultiField(@RequestParam("q") String q, @RequestParam("fields") String fields) {
+        return super.queryMultiField(q, fields);
     }
 
     @Override
