@@ -8,23 +8,17 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vip.efactory.common.base.utils.R;
-import vip.efactory.common.base.utils.SpringContextHolder;
-import vip.efactory.embp.base.service.impl.BaseObserver;
 import vip.efactory.embp.base.service.impl.BaseServiceImpl;
 import vip.efactory.embp.example.dto.MenuTree;
 import vip.efactory.embp.example.entity.SysMenu;
 import vip.efactory.embp.example.entity.SysRoleMenu;
 import vip.efactory.embp.example.mapper.SysMenuMapper;
 import vip.efactory.embp.example.mapper.SysRoleMenuMapper;
-import vip.efactory.embp.example.service.*;
+import vip.efactory.embp.example.service.SysMenuService;
 import vip.efactory.embp.example.vo.MenuVO;
 import vip.efactory.embp.example.vo.TreeUtil;
 
-import javax.annotation.PostConstruct;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * 菜单权限表 服务实现类
@@ -77,7 +71,8 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu, SysMenuMapper> 
     public Boolean updateMenuById(SysMenu sysMenu) {
         boolean ret = this.updateById(sysMenu);
         if(ret) {
-            notifyOthers();
+            // 不传递数据
+            notifyOthers(null);
         }
         return ret;
     }
