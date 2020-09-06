@@ -10,6 +10,7 @@ import vip.efactory.embp.base.controller.BaseController;
 import vip.efactory.embp.example.entity.SysMenu;
 import vip.efactory.embp.example.service.SysMenuService;
 
+import javax.validation.Valid;
 import java.io.Serializable;
 
 
@@ -78,16 +79,16 @@ public class MenuController extends BaseController<SysMenu, SysMenuService> {
 //        return entityService.removeMenuById(id);
 //    }
 //
-//    /**
-//     * 更新菜单
-//     *
-//     * @param sysMenu
-//     * @return
-//     */
-//    @PutMapping
-//    public R update(@Valid @RequestBody SysMenu sysMenu) {
-//        return R.ok(entityService.updateMenuById(sysMenu));
-//    }
+    /**
+     * 更新菜单
+     *
+     * @param sysMenu
+     * @return
+     */
+    @PutMapping
+    public R update(@Valid @RequestBody SysMenu sysMenu) {
+        return R.ok(entityService.updateMenuById(sysMenu));
+    }
 
     // CRUD 模板方法 开始 //
     @Override
@@ -126,11 +127,11 @@ public class MenuController extends BaseController<SysMenu, SysMenuService> {
         return super.save(entity);
     }
 
-    @Override
-    @PutMapping
-    public R updateById(@RequestBody SysMenu entity) {
-        return super.updateById(entity);
-    }
+//    @Override
+//    @PutMapping
+//    public R updateById(@RequestBody SysMenu entity) {
+//        return super.updateById(entity);
+//    }
 
     @Override
     @DeleteMapping("/{id}")

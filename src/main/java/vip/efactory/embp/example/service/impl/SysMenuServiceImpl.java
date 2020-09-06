@@ -7,6 +7,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import vip.efactory.common.base.bean.ObserveData;
+import vip.efactory.common.base.bean.OperateTypeEnum;
 import vip.efactory.common.base.utils.R;
 import vip.efactory.embp.base.service.impl.BaseServiceImpl;
 import vip.efactory.embp.example.dto.MenuTree;
@@ -72,7 +74,13 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu, SysMenuMapper> 
         boolean ret = this.updateById(sysMenu);
         if(ret) {
             // 不传递数据
-            notifyOthers(null);
+//            notifyOthers(null);
+            // 传递数据
+            ObserveData data = new ObserveData();
+            data.setClassName("SysMenu");
+            data.setOperType(OperateTypeEnum.UPDATE.getCode());
+            data.setData(sysMenu.getMenuId().toString());
+            notifyOthers(data);
         }
         return ret;
     }

@@ -174,8 +174,9 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserMapper> 
 
     // 联动清除本地的缓存！
     @Override
-    @CacheEvict(value = "USER_DETAILS",allEntries = true)
+    @CacheEvict(value = "USER_DETAILS", allEntries = true)
     public void update(BaseObservable o, Object arg) {
         log.info("联动清除user缓存信息.....");
+        log.info("收到的数据是：" + arg);
     }
 }
