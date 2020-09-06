@@ -72,14 +72,11 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu, SysMenuMapper> 
     @CacheEvict(value = "MENU_DETAILS", allEntries = true)
     public Boolean updateMenuById(SysMenu sysMenu) {
         boolean ret = this.updateById(sysMenu);
-        if(ret) {
+        if (ret) {
             // 不传递数据
 //            notifyOthers(null);
             // 传递数据
-            ObserveData data = new ObserveData();
-            data.setClassName("SysMenu");
-            data.setOperType(OperateTypeEnum.UPDATE.getCode());
-            data.setData(sysMenu.getMenuId().toString());
+            ObserveData data = new ObserveData("SysMenu", OperateTypeEnum.UPDATE.getCode(), sysMenu.getMenuId().toString());
             notifyOthers(data);
         }
         return ret;
