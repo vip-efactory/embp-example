@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<embp.version>1.0.0</embp.version>
 	</properties>
 
 	<dependencies>
@@ -33,10 +34,17 @@
 			<version>2.1.3</version>
 		</dependency>
 		<!-- 添加embp的依赖 -->
+<!--		<dependency>-->
+<!--			<groupId>vip.efactory</groupId>-->
+<!--			<artifactId>embp</artifactId>-->
+<!--			<version>${embp.version}</version>-->
+<!--		</dependency>-->
+		<!-- 使用embp的starter依赖 -->
 		<dependency>
 			<groupId>vip.efactory</groupId>
-			<artifactId>embp</artifactId>
-			<version>1.0.0</version>
+			<artifactId>embp-spring-boot-starter</artifactId>
+			<version>${embp.version}</version>
+			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
