@@ -10,13 +10,13 @@
 	</parent>
 	<groupId>vip.efactory.embp.example</groupId>
 	<artifactId>embp-example</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<name>embp-example</name>
 	<description>embp框架的测试项目</description>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<embp.version>1.0.0</embp.version>
+		<embp.version>1.1.0</embp.version>
 	</properties>
 
 	<dependencies>
